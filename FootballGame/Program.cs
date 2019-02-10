@@ -11,97 +11,59 @@ namespace FootballGame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("FootBall Game - First to 21");
+            //Console.WriteLine("FootBall Game - First to 21");
 
             int Downs = 0;
             int DownYards = 0;
-            //int TotalYards = 0;
+            int TotalYards = 90;
+            int Score = 0;
             
             Random randomNumber = new Random();
-            int  yards = randomNumber.Next(1, 10);
-            Downs++;
-
-            if (Downs < 4)
+                       
+                        
+            for (int downs = 0; downs < 4; downs++)
             {
-                DownYards += yards;
-            }
-            else Console.WriteLine("TurnOver on Downs");
+                int yards = randomNumber.Next(0, 10);
+                Downs++;                               
+                TotalYards += yards;
 
-            if (DownYards < 10)
-            {
-                DownYards += yards;
-            }
-
-
-            
-            Console.Write($"Random # = {yards} ");
-
-
-            //var int DownYards;
-
-            //for (var counter = 0; counter < 10; counter++)
-            //{
-            //    DownYards = 
-            //}
-            
-        }
+                if (TotalYards >= 100)
+                {
+                    DownYards = 0;
+                    Downs = 0;
+                    Score += 7;
+                    TotalYards = 90;
+                    Console.WriteLine($"Team A scored {Score}");
+                    continue;
+                }
+                else
+                {
+                    Console.WriteLine($"{Downs + 1} and {(10 - DownYards) - yards} to go.");
+                }
 
 
+                if (Downs < 4)
+                {       // Do nothing           
+                }
+                else Console.WriteLine("TurnOver on Downs");
+                ;
 
-                 
 
-        //    //int TeamScore;
-        //    //int TotalYards;
-        //    //int DownYards;
-
-            
-            
-        //    Random rnd = new Random();
-        //    int BestTotal = 0;
-        //    int BestRolls = 0;
-        //    int counter = 0;
-        //    int gp = 0;
-        //    long GamesToPlay = 10000000000;
-
-                                 
-        //    while (counter++ < GamesToPlay)
-        //    {
-        //        int Yards = 0;
-        //        int Rolls = 0;
-        //        int Die = 0;
-
-        //        do
-        //        {
-        //            DownYards += Die;
-        //            Die = rnd.Next(10) + 1;
-        //            if( DownYards >= 10)
-        //            {
-        //                Rolls++;
-        //            }
+                if (DownYards < 10)
+                {
+                    DownYards += yards;   // ---go back to random #
+                }
+                else
+                {
+                    Console.WriteLine($"First Down and {100 - TotalYards} to goal line.");
+                    DownYards = 0;
+                    Downs = 0;
                     
-        //        }
-
-        //        while()
-
-
-
-        //        if (Total > BestTotal)
-        //        {
-        //            BestTotal = Total;
-        //            BestRolls = Rolls;
-        //            Console.WriteLine($"Score: {BestTotal} in {BestRolls} rolls. Played Games: {counter}");
-        //        }
-        //        //continue;
-
-
-
-        //    }
-
-        //    Console.ReadKey();
-
-
-        //}
-    }
+                }
+                               
+            }            
+        }           
+    }       
 }
 
    
