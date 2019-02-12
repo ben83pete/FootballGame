@@ -12,19 +12,32 @@ namespace FootballGame {
             int TotalYards = 70;
             int Score = 0;
 
-            Random randomNumber = new Random();
+            var randomNumber = new Random();
 
-
-            for (int downs = 1; downs < 4; downs++) {
-                //Downs++;
-                int yards = randomNumber.Next(0, 10);
+            #region Team Fairfield
+            for (int downs = 1; downs < 4; downs++) {                
+                int yards = randomNumber.Next(-5, 10);
                 TotalYards += yards;
+                DownYards += yards;
+                
+                if (TotalYards >= 100) {
+                    DownYards = 0;
+                    downs = 0;
+                    Score += 7;
+                    TotalYards = 90;
+                    Console.WriteLine($"Fairfield scored {Score}");
+                    break;
+                }
 
                 if (DownYards < 10) {
-                    DownYards += yards;   // ---go back to random #
+                    Console.WriteLine($"Play resulted in {yards} yards.");
+                    Console.WriteLine($"{downs + 1} Down and {10 - DownYards} yards to go.");
                 }
                 else {
-                    Console.WriteLine($"{downs + 1} and {(10 - DownYards) - yards} to go.");
+                    Console.WriteLine($"Play resulted in {yards} yards.");
+                    Console.WriteLine($"First Down INDIANS!! {100 - TotalYards} yards to goal line.");
+                     DownYards = 0;
+                     downs = 0;
                 }
 
                 if (downs < 4) {
@@ -34,23 +47,10 @@ namespace FootballGame {
                     Console.WriteLine("TurnOver on Downs");
                     break;
                 }
+                                
 
-                if (TotalYards >= 100) {
-                    DownYards = 0;
-                    downs = 0;
-                    Score += 7;
-                    TotalYards = 90;
-                    Console.WriteLine($"Fairfield scored {Score}");
-                    break;
-                }
-                else {
-                    Console.WriteLine($"First Down and {100 - TotalYards} to goal line.");
-                    DownYards = 0;
-                    downs = 0;
-                }
-
-            }
-        
+            }Console.ReadKey();
+            #endregion
         }
     }
 
